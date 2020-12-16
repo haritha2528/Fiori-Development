@@ -1,0 +1,80 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data" xmlns:core="sap.ui.core"
+	xmlns:chart="sap.suite.ui.commons" xmlns:c="sap.suite.ui.microchart" xmlns:f="sap.ui.layout.form"
+	controllerName="UI.FioriModule.controller.Main" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<VBox class="sapUILargeMarginBottom">
+							<Text text="Welcome to UI5 programming in SAP Business Application Studio/ FullStack Webide "/>
+							<!--	<Image src="https://ui5.sap.com/resources/sap/ui/documentation/sdk/images/logo_ui5.png" width="140px" height="140px" id="image0"/>-->
+						</VBox>
+						<!--	// New panel-->
+						<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true" id="panel0" headerText="Welcome">
+							<content>
+								<!--<Text text="Panel Content" id="text2"/>-->
+								<!--	<Text xmlns="sap.m" text="Lets Learn UI5 :Exercise to Create a Login page "/>-->
+								<Image src="https://ui5.sap.com/resources/sap/ui/documentation/sdk/images/logo_ui5.png" width="140px" height="140px"
+									id="image0_1603333551904"/>
+								<VBox class="sapUiResponsiveMargin">
+									<VBox>
+										<HBox xmlns="sap.m">
+											<Label class="sapUiTinyMarginTop" text="Username" tooltip="Use your e-mail id " required="true"/>
+											<Input class="sapUiTinyMarginBegin" id="mail" type="Email" width="10rem"/>
+										</HBox>
+									</VBox>
+									<VBox>
+										<HBox>
+											<Label class="sapUiTinyMarginTop" text="Password" required="true"/>
+											<Input class="sapUiTinyMarginBegin" id="pwd" width="10rem" type="Password" value="{CategoryName}"/>
+										</HBox>
+									</VBox>
+									<HBox>
+										<Button class="sapUiSizeCompact" text="Login" type="Default" press="onLoginPress"/>
+										<Button class="sapUiSizeCompact sapUiTinyMarginBegin" text="SignUp" press="onSignupPress" tooltip="New user registration" width="6rem"
+											type="Accept"/>
+									</HBox>
+									<Link xmlns="sap.m" href="https://ui5.sap.com" text="Forgot Password?" id="idreset"/>
+								</VBox>
+							</content>
+						</Panel>
+						<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true" id="panel1" headerText="Bar Chart">
+							<viz:VizFrame id="idVizFrame2" width="80%" height="400px" vizProperties="{ title: {text : 'Summary', visible : true}}" xmlns="sap.viz"></viz:VizFrame>
+						</Panel>
+						<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true" id="panel2" headerText="Column Chart">
+							<viz:VizFrame id="idVizFrame3" width="80%" height="400px" vizProperties="{ title: {text : 'Summary', visible : true}}" xmlns="sap.viz"></viz:VizFrame>
+						</Panel>
+						<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true" id="panel3" headerText="Donut Chart">
+							<chart:ChartContainer id="chartContainer" showFullScreen="true" showZoom="false" title="Summary Report">
+								<chart:ChartContainerContent>
+									<chart:content>
+										<viz:VizFrame id="idpiechart" width="auto" uiConfig="{applicationSet:'fiori'}" vizType="donut"
+											vizProperties="{ plotArea:{ dataLabel:{visible: true} }, title : {text:'Flavor-Sales'} }" selectData="myOnClickHandler"
+											renderComplete="handleRenderComplete">
+											<viz:dataset>
+												<viz.data:FlattenedDataset id="flattenData" data="{IceCreamModel>/Items}">
+													<viz.data:dimensions>
+														<viz.data:DimensionDefinition name="Flavor" value="{IceCreamModel>Flavor}"/>
+													</viz.data:dimensions>
+													<viz.data:measures>
+														<viz.data:MeasureDefinition name="Sales" value="{IceCreamModel>Sales}"/>
+													</viz.data:measures>
+												</viz.data:FlattenedDataset>
+											</viz:dataset>
+											<viz:feeds>
+												<viz.feeds:FeedItem uid="size" type="Measure" values="Sales"/>
+												<viz.feeds:FeedItem uid="color" type="Dimension" values="Flavor"/>
+											</viz:feeds>
+										</viz:VizFrame>
+									</chart:content>
+								</chart:ChartContainerContent>
+							</chart:ChartContainer>
+						</Panel>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
